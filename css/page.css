@@ -1,0 +1,9 @@
+ *{
+    padding: 0;
+    margin: 0;
+    }
+   .div{
+    padding: 15px;
+    max-width: 640px;
+    margin: auto;
+   }
