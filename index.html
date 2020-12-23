@@ -26,7 +26,7 @@
                         }
                     });
                      
-                    var title = Demo $(this).text();
+                    var title = "Demo" $(this).text();
                     if (event && /\d/.test(event.button)) {
                         history.pushState({ title: title }, title, location.href.split
                             ('?')[0] + '?' + query);
