@@ -5,70 +5,7 @@
 </head>
 <body bgcolor="black" link="black" alink="black" vlink="black">
 <link rel="stylesheet" type="text/css" href="css/index.css" />
-<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
 <script src="https://unpkg.com/valine@1.4.14/dist/Valine.min.js"></script>
-<script src="https://cdn.bootcdn.net/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
-   <script>
-        $(function () {
-            var eleMenus = $('a').bind('click', function (event) {
-                var query = this.href.split('?')[1];
-                if (history.pushState && query) {
-                    $('#result').empty();
-                    $.ajax({
-                        url: this.href,
-                        type: 'get',
-                        dataType: 'json',
-                        success: function (data) {
-                             
-                            $.each(data, function (i, v) {
-                                $('<li>' + v.name + ',' + v.price + ',' + v.address + '' + '</li>').appendTo('#result');
-                            });
-                        }
-                    });
-                     
-                    var title = "Demo" $(this).text();
-                    if (event && /\d/.test(event.button)) {
-                        history.pushState({ title: title }, title, location.href.split
-                            ('?')[0] + '?' + query);
-                    }
-                }
-                return false;
-            });
- 
-            var fnHashTrigger = function (target) {
-                var query = location.href.split("?")[1], eleTarget = target || null;
-                if (typeof query == "undefined") {
-                    if (eleTarget = eleMenus.get(0)) {
-                        // 如果没有查询字符，则使用第一个导航元素的查询字符内容
-                        history.replaceState(null, document.title, location.href.split("#")[0] + "?" + eleTarget.href.split("?")[1]) + location.hash;
-                        fnHashTrigger(eleTarget);
-                    }
-                } else {
-                    eleMenus.each(function () {
-                        if (eleTarget === null && this.href.split("?")[1] === query) {
-                            eleTarget = this;
-                        }
-                    });
- 
-                    if (!eleTarget) {
-                        // 如果查询序列没有对应的导航菜单，去除查询然后执行回调
-                        history.replaceState(null, document.title, location.href.split("?")[0]);
-                        fnHashTrigger();
-                    } else {
-                        $(eleTarget).trigger("click");
-                    }
-                }
-            }
- 
-            if (history.pushState) {
-                window.addEventListener('popstate', function () {
-                    fnHashTrigger();
-                });
-            }
- 
-            fnHashTrigger();
-        });
-    </script>
 <div>
 <font color="white">
 <center>
